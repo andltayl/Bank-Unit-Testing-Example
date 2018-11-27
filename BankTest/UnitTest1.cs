@@ -124,12 +124,13 @@ namespace BankTest
             // act  
             try
             {
+                account.FreezeAccount();
                 account.Credit(creditAmount);
             }
             catch (Exception e)
             {
                 // assert  
-                StringAssert.Contains(e.Message, BankAccount.CreditAmountLessThanZeroMessage);
+                StringAssert.Contains(e.Message, "Account frozen");
                 return;
             }
             Assert.Fail("No exception was thrown.");
